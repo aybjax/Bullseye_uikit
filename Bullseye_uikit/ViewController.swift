@@ -58,15 +58,15 @@ class ViewController: UIViewController {
         
         let msg = "You scored \(points)"
         
-        let alert = UIAlertController(title: "Hello world",
+        let alert = UIAlertController(title: "Bullseye",
                                       message: msg,
                                       preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let action = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.startNewRound()
+        })
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
-        
-        startNewRound()
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
