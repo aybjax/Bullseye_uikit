@@ -13,21 +13,18 @@ class HighScoresViewController: UITableViewController {
     // ==========
     
     var items = [HighScoreItem]()
+    
+    // Methods
+    // =======
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let item1 = HighScoreItem(name: "The reader of this book", score: 50000)
-        let item2 = HighScoreItem(name: "Manda", score: 10000)
-        let item3 = HighScoreItem(name: "Joey", score: 5000)
-        let item4 = HighScoreItem(name: "Adam", score: 1000)
-        let item5 = HighScoreItem(name: "Eli", score: 500)
+        items = PersistencyHelper.loadHighScores()
         
-        items.append(item1)
-        items.append(item2)
-        items.append(item3)
-        items.append(item4)
-        items.append(item5)
+        if(items.count == 0) {
+            resetHighScores()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -124,7 +121,42 @@ class HighScoresViewController: UITableViewController {
     */
 
     // MARK: - Table View Delegate
+    
+    // remove permanent selection of rows
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // swipe to delete
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        items.remove(at: indexPath.row)
+        
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+        
+        PersistencyHelper.saveHighScores(items)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction
+    func resetHighScores() {
+        items = [HighScoreItem]()
+        let item1 = HighScoreItem(name: "The reader of this book", score: 50000)
+        let item2 = HighScoreItem(name: "Manda", score: 10000)
+        let item3 = HighScoreItem(name: "Joey", score: 5000)
+        let item4 = HighScoreItem(name: "Adam", score: 1000)
+        let item5 = HighScoreItem(name: "Eli", score: 500)
+        
+        items.append(item1)
+        items.append(item2)
+        items.append(item3)
+        items.append(item4)
+        items.append(item5)
+        tableView.reloadData()
+        
+        PersistencyHelper.saveHighScores(items)
     }
 }

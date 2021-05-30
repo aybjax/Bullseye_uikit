@@ -64,10 +64,26 @@ class ViewController: UIViewController {
         roundLabel.text = String(round)
     }
     
+    func addHighScore(_ score: Int) {
+        guard score > 0 else {
+            return;
+        }
+        
+        let high_score = HighScoreItem(name: "Unknown", score: score)
+        
+        var high_scores = PersistencyHelper.loadHighScores()
+        high_scores.append(high_score)
+        high_scores.sort{$0.score > $1.score}
+        
+        PersistencyHelper.saveHighScores(high_scores)
+    }
+    
     // Actions
     
     @IBAction
     func startNewGame() {
+        addHighScore(score)
+        
         score = 0
         round = 0
         startNewRound()
