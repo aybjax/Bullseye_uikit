@@ -13,6 +13,10 @@
 		AD1F6FF62662725800CF6A62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1F6FF42662725800CF6A62 /* Main.storyboard */; };
 		AD1F6FF82662725900CF6A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD1F6FF72662725900CF6A62 /* Assets.xcassets */; };
 		AD1F6FFB2662725900CF6A62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD1F6FF92662725900CF6A62 /* LaunchScreen.storyboard */; };
+		AD20F6132662F8EC0057B4E7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20F6122662F8EC0057B4E7 /* AboutViewController.swift */; };
+		AD20F63F2663059E0057B4E7 /* BullsEye.html in Resources */ = {isa = PBXBuildFile; fileRef = AD20F63E2663059E0057B4E7 /* BullsEye.html */; };
+		AD20F643266308690057B4E7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD20F642266308690057B4E7 /* WebKit.framework */; };
+		AD20F646266315310057B4E7 /* HighScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD20F645266315310057B4E7 /* HighScoresViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		AD1F6FF72662725900CF6A62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD1F6FFA2662725900CF6A62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD1F6FFC2662725900CF6A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD20F6122662F8EC0057B4E7 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		AD20F63E2663059E0057B4E7 /* BullsEye.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BullsEye.html; sourceTree = "<group>"; };
+		AD20F642266308690057B4E7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		AD20F645266315310057B4E7 /* HighScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoresViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD20F643266308690057B4E7 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,7 @@
 			children = (
 				AD1F6FED2662725800CF6A62 /* Bullseye_uikit */,
 				AD1F6FEC2662725800CF6A62 /* Products */,
+				AD20F641266308690057B4E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +66,26 @@
 		AD1F6FED2662725800CF6A62 /* Bullseye_uikit */ = {
 			isa = PBXGroup;
 			children = (
+				AD20F63E2663059E0057B4E7 /* BullsEye.html */,
 				AD1F6FEE2662725800CF6A62 /* AppDelegate.swift */,
 				AD1F6FF02662725800CF6A62 /* SceneDelegate.swift */,
 				AD1F6FF22662725800CF6A62 /* ViewController.swift */,
+				AD20F6122662F8EC0057B4E7 /* AboutViewController.swift */,
 				AD1F6FF42662725800CF6A62 /* Main.storyboard */,
 				AD1F6FF72662725900CF6A62 /* Assets.xcassets */,
 				AD1F6FF92662725900CF6A62 /* LaunchScreen.storyboard */,
 				AD1F6FFC2662725900CF6A62 /* Info.plist */,
+				AD20F645266315310057B4E7 /* HighScoresViewController.swift */,
 			);
 			path = Bullseye_uikit;
+			sourceTree = "<group>";
+		};
+		AD20F641266308690057B4E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD20F642266308690057B4E7 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD1F6FFB2662725900CF6A62 /* LaunchScreen.storyboard in Resources */,
+				AD20F63F2663059E0057B4E7 /* BullsEye.html in Resources */,
 				AD1F6FF82662725900CF6A62 /* Assets.xcassets in Resources */,
 				AD1F6FF62662725800CF6A62 /* Main.storyboard in Resources */,
 			);
@@ -137,8 +159,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD20F646266315310057B4E7 /* HighScoresViewController.swift in Sources */,
 				AD1F6FF32662725800CF6A62 /* ViewController.swift in Sources */,
 				AD1F6FEF2662725800CF6A62 /* AppDelegate.swift in Sources */,
+				AD20F6132662F8EC0057B4E7 /* AboutViewController.swift in Sources */,
 				AD1F6FF12662725800CF6A62 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

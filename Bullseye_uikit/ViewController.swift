@@ -28,8 +28,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        startNewRound()
-//        updateTotalScoreLable()
+        startNewGame()
+        
+        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")!
+        slider.setThumbImage(thumbImageNormal, for: .normal)
+        
+        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")!
+        slider.setThumbImage(thumbImageHighlighted, for: .highlighted)
+        
+        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        
+        let trackLeftImage = UIImage(named: "SliderTrackLeft")!
+        let trackLeftResizable = trackLeftImage.resizableImage(withCapInsets: insets)
+        slider.setMinimumTrackImage(trackLeftResizable, for: .normal)
+        
+        let trackRightImage = UIImage(named: "SliderTrackRight")!
+        let trackRightResizable = trackRightImage.resizableImage(withCapInsets: insets)
+        slider.setMinimumTrackImage(trackRightResizable, for: .normal)
     }
     
     // Methods
@@ -50,6 +65,13 @@ class ViewController: UIViewController {
     }
     
     // Actions
+    
+    @IBAction
+    func startNewGame() {
+        score = 0
+        round = 0
+        startNewRound()
+    }
 
     @IBAction func showAlert() {
         let difference = abs(targetValue - currentValue)
