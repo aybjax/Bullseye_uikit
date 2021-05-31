@@ -17,7 +17,7 @@ class HighScoresViewController: UITableViewController,
         if let index = items.firstIndex(of: item) {
             let indexPath = IndexPath(row: index, section: 0)
             let indexPaths = [indexPath]
-
+            
             tableView.reloadRows(at: indexPaths, with: .automatic)
         }
         
