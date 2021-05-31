@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditHighScoreViewController: UITableViewController {
+class EditHighScoreViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,17 +18,22 @@ class EditHighScoreViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textField.becomeFirstResponder()
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
     /*
@@ -85,6 +90,13 @@ class EditHighScoreViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Table view Delegates
+    override func tableView(_ tableView: UITableView,
+                            willSelectRowAt indexPath: IndexPath)
+    ->IndexPath? {
+        return nil
+    }
 
     // MARK: - Actions
     
@@ -95,6 +107,31 @@ class EditHighScoreViewController: UITableViewController {
     
     @IBAction
     func done() {
+        print("Contents of filed: \(textField.text!)")
+        
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    
+    // MARK: - Text Field Delegates
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let oldText = textField.text!
+        let stringRange = Range(range, in: oldText)!
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+        
+        if newText.isEmpty {
+            doneBarButton.isEnabled = false
+        }
+        else {
+            doneBarButton.isEnabled = true
+        }
+        
+        return true
     }
 }
