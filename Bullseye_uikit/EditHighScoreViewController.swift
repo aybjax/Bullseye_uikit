@@ -7,6 +7,15 @@
 
 import UIKit
 
+protocol EditHighScoreViewControllerDelegate: class {
+    func editHighScoreVIewControllerDidCancel(
+        _ controller: EditHighScoreViewController)
+    
+    func editHighScoreViewController(
+        _ controller: EditHighScoreViewController,
+        didFinishEditing item: HighScoreItem)
+}
+
 class EditHighScoreViewController: UITableViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
@@ -21,6 +30,7 @@ class EditHighScoreViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        textField.text = highScoreItem.name
         textField.becomeFirstResponder()
     }
 
@@ -102,14 +112,13 @@ class EditHighScoreViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction
     func cancel() {
-        navigationController?.popViewController(animated: true)
+        delegate?.editHighScoreVIewControllerDidCancel(self)
     }
     
     @IBAction
     func done() {
-        print("Contents of filed: \(textField.text!)")
-        
-        navigationController?.popViewController(animated: true)
+        highScoreItem.name = textField.text!
+        delegate?.editHighScoreViewController(self, didFinishEditing: highScoreItem)
     }
     
     // MARK: - Outlets
@@ -134,4 +143,9 @@ class EditHighScoreViewController: UITableViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    // Delegate properties
+    // ===================
+    weak var delegate: EditHighScoreViewControllerDelegate?
+    var highScoreItem: HighScoreItem!
 }

@@ -7,7 +7,34 @@
 
 import UIKit
 
-class HighScoresViewController: UITableViewController {
+class HighScoresViewController: UITableViewController,
+                                EditHighScoreViewControllerDelegate{
+    func editHighScoreVIewControllerDidCancel(_ controller: EditHighScoreViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func editHighScoreViewController(_ controller: EditHighScoreViewController, didFinishEditing item: HighScoreItem) {
+        if let index = items.firstIndex(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            let indexPaths = [indexPath]
+
+            tableView.reloadRows(at: indexPaths, with: .automatic)
+        }
+        
+        PersistencyHelper.saveHighScores(items)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let controller = segue.destination as! EditHighScoreViewController
+        controller.delegate = self
+        
+        if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+            controller.highScoreItem = items[indexPath.row]
+        }
+    }
     
     // Properties
     // ==========
